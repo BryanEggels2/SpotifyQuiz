@@ -13,10 +13,6 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var client_id = '7afc8375123841d8aca2c5318acfde80'; // Your client id
-var client_secret = '8052d617886a421db36603528d3f675a'; // Your secret
-var redirect_uri = 'http://localhost:8080/login'; // Your redirect uri
-
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
@@ -47,14 +43,15 @@ app.get('/login', function(req, res) {
 
   // your application requests authorization
   var scope = 'user-read-private user-read-email';
-  res.redirect('https://accounts.spotify.com/authorize?' +
+  res.redirect('http://localhost:8080/login?' +
     querystring.stringify({
-      response_type: 'code',
-      client_id: client_id,
       scope: scope,
-      redirect_uri: redirect_uri,
-      state: state
     }));
+
+  console.log(test)
+
+  res.redirect(test);
+  
 });
 
 app.get('/callback', function(req, res) {

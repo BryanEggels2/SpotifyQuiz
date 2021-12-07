@@ -16,6 +16,5 @@ class SpotifyQuizApplicationTests {
 	void requestAuthorization(){
 		LoginService test = new LoginService();
 		System.out.println(test.login("user-read-private user-read-email").toString());
-
 	}
 }

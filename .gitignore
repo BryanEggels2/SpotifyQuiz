@@ -4,6 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+Spring boot back-end/src/main/resources/apikey.properties
+
 ### STS ###
 .apt_generated
 .classpath
@@ -31,4 +33,3 @@ build/
 
 ### VS Code ###
 .vscode/
-Spring boot back-end/src/main/resources/apikey.properties

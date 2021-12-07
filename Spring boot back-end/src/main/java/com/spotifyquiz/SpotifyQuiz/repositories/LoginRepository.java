@@ -1,5 +1,6 @@
 package com.spotifyquiz.SpotifyQuiz.repositories;
 
+import com.spotifyquiz.SpotifyQuiz.models.UserDetails;
 import com.spotifyquiz.SpotifyQuiz.services.implementations.LoginService;
 import com.spotifyquiz.SpotifyQuiz.services.interfaces.LoginInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class LoginRepository implements LoginInterface {
     }
 
     @Override
-    public boolean callback(String code) {
+    public UserDetails callback(String code) {
         return LoginService.callback(code);
     }
 }

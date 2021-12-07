@@ -1,9 +1,11 @@
 package com.spotifyquiz.SpotifyQuiz.services.interfaces;
 
+import com.spotifyquiz.SpotifyQuiz.models.UserDetails;
+
 import java.net.URI;
 
 public interface LoginInterface {
     URI login(String scope);
-    boolean callback(String code);
+    UserDetails callback(String code);
 
 }

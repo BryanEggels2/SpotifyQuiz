@@ -1,5 +1,6 @@
 package com.spotifyquiz.SpotifyQuiz.controllers;
 
+import com.spotifyquiz.SpotifyQuiz.models.UserDetails;
 import com.spotifyquiz.SpotifyQuiz.repositories.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +16,11 @@ public class LoginController {
     LoginRepository loginRepository;
 
     @GetMapping(value = "/callback")
-    public boolean callback(@RequestParam Map<String, String> parameters){
+    public UserDetails callback(@RequestParam Map<String, String> parameters){
         String code = parameters.get("code");
+        UserDetails details = null;
         if (code != null){
-            loginRepository.callback(parameters.get("code"));
+            details = loginRepository.callback(parameters.get("code"));
             System.out.println(parameters.get("code"));
         }
         else{
@@ -26,13 +28,12 @@ public class LoginController {
             System.out.println(parameters.get("error"));
         }
         System.out.println(parameters.get("state"));
-        return true;
-        //return new ModelAndView("redirect:" + "http://localhost:8888/callback?code=" + parameters.get("code") + "&state=" + parameters.get("state") );
-    }
+        return details;
 
+    }
     @GetMapping(value = "/login")
-    public URI login(@RequestParam Map<String, String> parameters){
-        return loginRepository.login(parameters.get("scope"));
+    public ModelAndView login(@RequestParam Map<String, String> parameters){
+        URI uri = loginRepository.login(parameters.get("scope"));
+        return new ModelAndView("redirect:" + uri.toString());
     }
-
 }
